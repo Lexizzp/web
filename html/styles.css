@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.main-title {
+    margin: 20px 0;
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+}
+
+.envelope-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: #e4d5b7;
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.envelope.open {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope .flap {
+    width: 100%;
+    height: 100%;
+    background: #d4c5a7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    transition: transform 0.4s ease;
+    transform-origin: top;
+}
+
+.envelope .body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter {
+    position: absolute;
+    width: 280px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.letter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none;
+}
+
+.letter-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-container {
+    background: linear-gradient(180deg, rgba(226, 232, 240, 0.5) 0%, rgba(226, 232, 240, 0.2) 100%);
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 200px;
+    position: relative;
+    background-image: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px);
+}
+
+.message {
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin: 0;
+    line-height: 30px;
+}
+
+.counter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #718096;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.next-button,
+.reset-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.next-button {
+    background: #ff6b6b;
+    flex: 1;
+}
+
+.reset-button {
+    background: #f3a683;
+    flex: 1;
+}
+
+.next-button:hover,
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .envelope,
+    .letter {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+}/* Estilos para las nubes flotantes */
+.clouds {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    filter: blur(2px);
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 50px;
+    height: 50px;
+    top: -20px;
+    left: 10px;
+}
+
+.cloud::after {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    right: 10px;
+}
+
+/* Estilos para las estrellas y mariposas flotantes */
+.floating-items {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.6;
+    animation: float-animation 6s infinite;
+}
+
+/* Estilos para las imágenes en las esquinas */
+.corner-images {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.corner-image {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: rotate(-10deg);
+}
+
+.corner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.top-left {
+    top: 50px;
+    left: 50px;
+    transform: rotate(-15deg);
+}
+
+.top-right {
+    top: 50px;
+    right: 50px;
+    transform: rotate(15deg);
+}
+
+.bottom-left {
+    bottom: 50px;
+    left: 50px;
+    transform: rotate(15deg);
+}
+
+.bottom-right {
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(-15deg);
+}
+
+@keyframes float-animation {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+@keyframes cloud-animation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+/* Estilos para las nubes mejoradas */
+.clouds {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    filter: blur(3px);
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 70px;
+    height: 70px;
+    top: -25px;
+    left: 15px;
+}
+
+.cloud::after {
+    width: 80px;
+    height: 80px;
+    top: -35px;
+    right: 15px;
+}
+
+/* Estrellas brillantes de fondo */
+.stars-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite ease-in-out;
+}
+
+/* Elementos flotantes mejorados */
+.floating-items {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 25px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    animation: float-animation 6s infinite;
+}
+
+/* Burbujas decorativas */
+.bubble {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    backdrop-filter: blur(2px);
+    animation: bubble-float 8s infinite ease-in-out;
+}
+
+/* Cintas decorativas */
+.ribbon {
+    position: absolute;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    transform-origin: center;
+    animation: ribbon-wave 10s infinite ease-in-out;
+}
+
+/* Imágenes en las esquinas mejoradas */
+.corner-image {
+    width: 180px;
+    height: 180px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: rotate(-10deg);
+    transition: transform 0.3s ease;
+}
+
+.corner-image:hover {
+    transform: rotate(0) scale(1.05);
+}
+
+.top-left {
+    top: 40px;
+    left: 40px;
+    transform: rotate(-15deg);
+}
+
+.top-right {
+    top: 40px;
+    right: 40px;
+    transform: rotate(15deg);
+}
+
+.bottom-left {
+    bottom: 40px;
+    left: 40px;
+    transform: rotate(15deg);
+}
+
+.bottom-right {
+    bottom: 40px;
+    right: 40px;
+    transform: rotate(-15deg);
+}
+
+/* Animaciones */
+@keyframes float-animation {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-30px) rotate(15deg);
+    }
+}
+
+@keyframes cloud-animation {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(110vw);
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes bubble-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+@keyframes ribbon-wave {
+    0%, 100% {
+        transform: rotate(5deg) scaleX(0.9);
+    }
+    50% {
+        transform: rotate(-5deg) scaleX(1.1);
+    }
+}

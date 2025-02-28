@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Especiales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="../mp4/Cordelia.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <!-- Elementos de fondo -->
+<div class="clouds" id="clouds-container"></div>
+<div class="stars-background" id="stars-container"></div>
+<div class="floating-items" id="float-container"></div>
+
+<!-- Elementos decorativos adicionales -->
+<div class="ribbons" id="ribbons-container"></div>
+<div class="bubbles" id="bubbles-container"></div>
+
+    <!-- Añade esto justo después de la apertura del body -->
+<div class="clouds" id="clouds-container"></div>
+<div class="floating-items" id="float-container"></div>
+<div class="corner-images">
+    <div class="corner-image top-left">
+        <img src="../img/img1.jpeg" alt="Recuerdo 1">
+    </div>
+    <div class="corner-image top-right">
+        <img src="../img/img2.jpeg" alt="Recuerdo 2">
+    </div>
+    <div class="corner-image bottom-left">
+        <img src="../img/img3.jpeg" alt="Recuerdo 3">
+    </div>
+    <div class="corner-image bottom-right">
+        <img src="../img/img4.png" alt="Recuerdo 4">
+    </div>
+</div>
+    <h1 class="main-title">Notas Especiales 💌</h1>
+    <div class="envelope-wrapper">
+        <div class="envelope" id="envelope" onclick="openEnvelope()" role="button" tabindex="0">
+            <div class="flap"></div>
+            <div class="body">
+                <div class="details">
+                    <div class="stamp"></div>
+                    <div class="address-lines"></div>
+                </div>
+            </div>
+        </div>
+        <div class="letter hidden" id="letter">
+            <div class="letter-content">
+                <div class="message-container">
+                    <p class="message" id="message"></p>
+                    <p class="counter" id="counter"></p>
+                </div>
+                <div class="buttons">
+                    <button class="next-button" id="nextButton" onclick="nextMessage()">Siguiente</button>
+                    <button class="reset-button" id="resetButton" onclick="resetEnvelope()">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Con mucho cariño ❤️</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
